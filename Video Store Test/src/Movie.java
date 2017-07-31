@@ -4,18 +4,18 @@ public class Movie
 {
 	String title;
 	double price;
-	String movieType;
+	//String movieType;
 	Rental rentalClass;
 
-	String[] regularMovies = {"Terminator", "Matrix", "Godfather"};
+	/*String[] regularMovies = {"Terminator", "Matrix", "Godfather"};
 	String[] childrenMovies = {"FindingNemo", "WizardOfOz", "LionKing"};
-	String[] newReleases = {"WallStreet", "DallasBuyersClub"};
+	String[] newReleases = {"WallStreet", "DallasBuyersClub"};*/
 
 	public Movie(String title, int numberOfDays) 
 	{
 
 		this.title = title;
-		this.movieType = getMovieType();
+		//this.movieType = getMovieType();
 		this.price = getPricing(this.movieType);
 		this.rentalClass = new Rental(numberOfDays, movieType);
 
