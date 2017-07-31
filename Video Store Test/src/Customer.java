@@ -1,4 +1,5 @@
-import java.util.List;
+//import java.util.List;
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class Customer {
@@ -10,6 +11,8 @@ public class Customer {
 	List<Movie> moviesRented = new ArrayList<Movie>();
 
 	static Scanner input= new Scanner(System.in);
+        
+        DecimalFormat df2 = new DecimalFormat("#.00");
 
 	public Customer(String customerName) 
 	{
@@ -20,14 +23,15 @@ public class Customer {
 	{
 		while(true)
 		{
-			System.out.println("Please enter movie name : ");
-			String movie=input.next();
-			System.out.println("Please enter number of rental days : ");
-			String days = input.next();
+			System.out.print("Please enter movie name : ");
+			String movie=input.nextLine();
+			System.out.print("Please enter number of rental days : ");
+			int days = input.nextInt();
 
-			int numberOfDays = Integer.parseInt(days);
+			int numberOfDays = days;
 			Movie movieClass = new Movie(movie, numberOfDays);
 			moviesRented.add(movieClass);
+                        System.out.print("Do you want to add another movie? (y/n) ");
 			if(!yesTo("Do you want to add another movie?"))
 			{
 				break;
@@ -40,7 +44,7 @@ public class Customer {
 
 	private void printStatement() 
 	{
-		double TotalCost = 0;
+		double TotalCost = 0.00;
 
 		int TotalPoints = 0;
 
@@ -67,18 +71,20 @@ public class Customer {
 		}
 
 		System.out.println();
-		System.out.println("Total Rental Cost = $ " + TotalCost);
-		System.out.println("Total frequent renter points accumulated = "+ TotalPoints);
+		System.out.print("Total Rental Cost = $ ");
+                System.out.printf("%.2f", TotalCost);
+                System.out.println();
+                
 	}
 
 	public static boolean yesTo(String prompt)
 	{
-		System.out.print(prompt + " (y/n)? ");
+		//System.out.print(prompt + " (y/n)? ");
 		String response = input.nextLine().trim().toLowerCase();
 		while (!response.equals("y") && !response.equals("n")) 
 		{
-			System.out.println("Please answer y or n.");
-			System.out.print(prompt + " (y/n)? ");
+			//System.out.println("Please answer y or n.");
+			//System.out.print(prompt + " (y/n)? ");
 			response = input.nextLine().trim().toLowerCase();
 		}
 		return response.equals("y");
@@ -113,5 +119,4 @@ public class Customer {
 	{
 		this.moviesRented = moviesRented;
 	}
-
 }
